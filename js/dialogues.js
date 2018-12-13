@@ -9,7 +9,7 @@ var dialogues = [
   `Where should I start? Oh, I know! Let’s take a look at <span class="highlight">which continent</span> you are from... You are from . . .`,
   // `<span class="highlight">${userProfile.continent}</span> &mdash; correct? ${userProfile.greeting}! you can probably speak ${userProfile.language}, right? My calculations predict that you really value <span class="highlight">${userProfile.culturalValues[0]}</span>, <span class="highlight">${userProfile.culturalValues[1]}</span> and <span class="highlight">${userProfile.culturalValues[2]}</span>.`,
   `So you're from China &mdash; correct? ${userProfile.greeting}! you can probably speak ${userProfile.language}, right? My calculations predict that you really value <span class="highlight">${userProfile.culturalValues[0]}</span>, <span class="highlight">${userProfile.culturalValues[1]}</span> and <span class="highlight">${userProfile.culturalValues[2]}</span>.`,
-  `I have updated your avatar to resemble a <span class="highlight">${userProfile.avatar}</span> to represent your continent.`,
+  `I have updated your avatar to a <span class="highlight">${userProfile.avatar}</span> to represent your continent.`,
 
 
   // START CHAPTER 2 —— PERSONALITY

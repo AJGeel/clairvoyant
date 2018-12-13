@@ -30,7 +30,7 @@ function parseURLParams(url) {
 // }
 
 // Initialize variables, make DOM calls to lower browser heavinesss
-var diaIndex = 0;
+var dialogIndex = 0;
 var userAvatar = document.getElementById("user-avatar");
 var userAvatarImg = document.getElementById("user-avatar-img");
 var robotAvatarImg = document.getElementById("robot-avatar-img");
@@ -38,17 +38,18 @@ var typingSoundPlaying = false;
 var isVideoPlaying = false;
 
 var instance = new TypeIt('#active-text-window', {
-  speed: 40,
-  strings: [dialogues[0]],
+  speed: 3, /* DEBUG: SUPER FAST TYPING */
+  // speed: 40,
   deleteSpeed: 3,
+  strings: [dialogues[0]],
   cursor: true,
   cursorSpeed: 0,
   cursorChar: '<img class="next-icon" id="next-icon-id" src="images/chevron-right-outline.svg"></img>',
   // cursorChar: '<img class="next-icon orange-icon" id="next-icon-id" src="images/chevron-right-outline-orange.svg"></img>',
 
   callback: function(nextIcon) {
-    console.log(`active-stage: ${diaIndex+1}.`);
-    diaIndex++;
+    console.log(`$DEBUG active-stage: ${dialogIndex+1}.`);
+    dialogIndex++;
     showCursor();
     makeRobotStop();
     // typingSoundPlaying = false;
@@ -71,8 +72,8 @@ dialogueWindow.addEventListener("click", newFunction);
 
 function newFunction(){
 
-  instance.delete(dialogues[diaIndex-1].length);
-  instance.type(dialogues[diaIndex]);
+  instance.delete(dialogues[dialogIndex-1].length);
+  instance.type(dialogues[dialogIndex]);
   hideCursor();
 
   setTimeout(() => {
@@ -81,21 +82,21 @@ function newFunction(){
       // console.log(typingSoundPlaying);
   }, 1000);
 
-  // console.log(diaIndex);
+  // console.log(dialogIndex);
 
-  if (diaIndex == 1) {
+  if (dialogIndex == 1) {
     userAvatar.classList.add("user-avatar-untransform");
-  } else if (diaIndex == 3) {
+  } else if (dialogIndex == 3) {
     summonVideo('china-location');
-  } else if (diaIndex == 4) {
+  } else if (dialogIndex == 4) {
     setTimeout(() => {
       userAvatarImg.src="images/user-avatar-B.png";
       // wait for 2 seconds before changing the avatar
     }, 2000);
 
-  } else if (diaIndex == 6) {
+  } else if (dialogIndex == 6) {
     summonVideo('china-personality');
-  }  else if (diaIndex == 8) {
+  }  else if (dialogIndex == 8) {
     summonVideo('china-physicality');
   }
 
@@ -105,7 +106,7 @@ document.onkeypress = function(key_dtl){
   // key_dtl = key_dtl  || window.event;
   // var uni_code = key_dtl.keyCode || key_dtl.which;
   // var key_name = String.fromCharCode(uni_code);
-  /* code above listens to what character is pressed */
+  /* code above sees what character is pressed */
 
   newFunction();
 
@@ -116,12 +117,12 @@ document.onkeypress = function(key_dtl){
 
 function makeRobotTalk(){
   robotAvatarImg.src="images/talking-robot.gif";
-  console.log("talking-animation started.")
+  console.log("$DEBUG talking-animation started.")
 }
 
 function makeRobotStop(){
   robotAvatarImg.src="images/still-robot.png";
-  console.log("talking-animation terminated.")
+  console.log("$DEBUG talking-animation terminated.")
 }
 
 function hideCursor(){
@@ -133,7 +134,7 @@ function showCursor(){
 }
 
 function summonVideo(url){
-  const instance = basicLightbox.create(`<video autoplay><source src="videos/${url}.mp4" type="video/mp4"></video>`).show();
+  const lightbox = basicLightbox.create(`<video autoplay><source src="videos/${url}.mp4" type="video/mp4"></video>`).show();
 
 
   // if (!isVideoPlaying){
