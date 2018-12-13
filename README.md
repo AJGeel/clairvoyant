@@ -5,9 +5,7 @@
 
 | Timeframe            | Client           | Type                     | In collaboration with       |
 |----------------------|------------------|--------------------------|-----------------------------|
-| Sept. '18 — Feb. '19 | Eindhoven Museum | Design Project (20 ECTS) | X. Liang, K. Seck & Y. Shen |
-
----
+| Sept. '18 — Feb. '19 | [Eindhoven Museum](https://eindhovenmuseum.nl/) | Design Project (20 ECTS) | X. Liang, K. Seck & Y. Shen |
 
 
 ## Introduction
