@@ -6,18 +6,18 @@ function parseURLParams(url) {
       pairs = query.replace(/\+/g, " ").split("&"),
       parms = {}, i, n, v, nv;
 
-    if (query === url || query === "") return;
+  if (query === url || query === "") return;
 
-    for (i = 0; i < pairs.length; i++) {
-        nv = pairs[i].split("=", 2);
-        n = decodeURIComponent(nv[0]);
-        v = decodeURIComponent(nv[1]);
+  for (i = 0; i < pairs.length; i++) {
+      nv = pairs[i].split("=", 2);
+      n = decodeURIComponent(nv[0]);
+      v = decodeURIComponent(nv[1]);
 
-        if (!parms.hasOwnProperty(n)) parms[n] = [];
-        parms[n].push(nv.length === 2 ? v : null);
-    }
-    return parms;
+      if (!parms.hasOwnProperty(n)) parms[n] = [];
+      parms[n].push(nv.length === 2 ? v : null);
   }
+  return parms;
+}
 
   // Grabs URL, used in parsing parameters.
   var urlString = window.location.href;
@@ -30,16 +30,20 @@ function parseURLParams(url) {
 // }
 
 // Initialize variables, make DOM calls to lower browser heavinesss
-var dialogIndex = 0;
-var userAvatar = document.getElementById("user-avatar");
-var userAvatarImg = document.getElementById("user-avatar-img");
-var robotAvatarImg = document.getElementById("robot-avatar-img");
-var typingSoundPlaying = false;
-var isVideoPlaying = false;
+var dialogIndex = 0,
+    userAvatar = document.getElementById("user-avatar"),
+    userAvatarImg = document.getElementById("user-avatar-img"),
+    robotAvatarImg = document.getElementById("robot-avatar-img"),
+    typingSoundPlaying = false,
+    isVideoPlaying = false;
 
+// const lb = basicLightbox.create(``);
+// lb.show();
+
+// Dialogue typing initialisation
 var instance = new TypeIt('#active-text-window', {
-  speed: 3, /* DEBUG: SUPER FAST TYPING */
-  // speed: 40,
+  // speed: 3, /* DEBUG: SUPER FAST TYPING */
+  speed: 40,
   deleteSpeed: 3,
   strings: [dialogues[0]],
   cursor: true,
@@ -48,6 +52,7 @@ var instance = new TypeIt('#active-text-window', {
   // cursorChar: '<img class="next-icon orange-icon" id="next-icon-id" src="images/chevron-right-outline-orange.svg"></img>',
 
   callback: function(nextIcon) {
+    // When the typing has been completed, increase the dialogue index, show the cursor and make the robot stop talking. (AND stop the typing sound)
     console.log(`$DEBUG active-stage: ${dialogIndex+1}.`);
     dialogIndex++;
     showCursor();
@@ -68,9 +73,27 @@ setTimeout(() => {
   // playTypewriterSound();
 }, 2000);
 
-dialogueWindow.addEventListener("click", newFunction);
 
-function newFunction(){
+
+// If the dialogue window is clicked, progress the dialogue.
+dialogueWindow.addEventListener("click", progressDialogue);
+
+// If any button is pressed, progress the dialogue.
+document.onkeypress = function(key_dtl){
+  // key_dtl = key_dtl  || window.event; var uni_code = key_dtl.keyCode key_dtl.which; var key_name = String.fromCharCode(uni_code);
+
+  progressDialogue();
+  // if (lb.visible()){
+  //   // lb.close();
+  //   lb.innerHTML = `sjf;alksjdf;lak jf;al ksjdf;lkjsd f;lksjdf `;
+  // } else {
+  //   // lb.show();
+  // }
+
+  // if (lightbox is open):{ close lightbox. }
+}
+
+function progressDialogue(){
 
   instance.delete(dialogues[dialogIndex-1].length);
   instance.type(dialogues[dialogIndex]);
@@ -102,19 +125,6 @@ function newFunction(){
 
 }
 
-document.onkeypress = function(key_dtl){
-  // key_dtl = key_dtl  || window.event;
-  // var uni_code = key_dtl.keyCode || key_dtl.which;
-  // var key_name = String.fromCharCode(uni_code);
-  /* code above sees what character is pressed */
-
-  newFunction();
-
-  // if lightbox is open:{
-  //    close lightbox.
-  //}
-}
-
 function makeRobotTalk(){
   robotAvatarImg.src="images/talking-robot.gif";
   console.log("$DEBUG talking-animation started.")
@@ -134,7 +144,7 @@ function showCursor(){
 }
 
 function summonVideo(url){
-  const lightbox = basicLightbox.create(`<video autoplay><source src="videos/${url}.mp4" type="video/mp4"></video>`).show();
+  const lightboxVideo = basicLightbox.create(`<video autoplay><source src="videos/${url}.mp4" type="video/mp4"></video>`).show();
 
 
   // if (!isVideoPlaying){
