@@ -11,6 +11,7 @@
   --robot-diameter-big: 320px;
   --robot-diameter-small: 160px;
   --em-logo-size: 200px;
+  --joint-logo-size: 400px;
 }
 
 body{
@@ -20,12 +21,22 @@ body{
 }
 
 #em-logo{
+  /* Currently not in use as client wanted both logos */
   width: var(--em-logo-size);
   opacity: .2;
 
   position: absolute;
   left: calc(50vw - var(--em-logo-size) / 2);
   bottom: 30px;
+}
+
+#tue-x-em-logos{
+  width: var(--joint-logo-size);
+  opacity: .2;
+
+  position: absolute;
+  left: calc(50vw - var(--joint-logo-size) / 2);
+  bottom: 50px;
 }
 
 .container{
