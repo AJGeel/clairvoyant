@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Clairvoyant Web-App 🔮</title>
+
+<link href="css/reset.css" rel="stylesheet" />
+<link href="css/style.css" rel="stylesheet" />
+<link href="css/basicLightbox.min.css" rel="stylesheet" />
+<link rel="icon" type="image/ico" href="https://arthurgeel.com/favicon.png" />
+
+<style>
+
+</style>
+
+</head>
+
+<body>
+
+  <!-- <canvas style="position: absolute; z-index: 1337" class="fireworks"></canvas> -->
+
+  <div class="dark-overlay"></div>
+
+  <div class="container">
+    <div class="robot-avatar em-glow"><img id="robot-avatar-img" src="images/still-robot.png"></img></div>
+
+    <div class="em-glow" id="user-avatar"><img id="user-avatar-img" src="images/user-avatar-A.png"></img></div>
+
+    <div class="dialogue-window">
+      <p class="dialogue-text em-glow" id="active-text-window"></p>
+    </div>
+
+  </div>
+
+  <img id="em-logo" src="images/em-logo.svg"></img>
+
+
+
+  <!-- Libraries -->
+  <script src="js/dist/basicLightbox.min.js"></script>
+  <script src="js/dist/anime.min.js"></script>        <!-- Docs: http://animejs.com/documentation/ -->
+  <script src="js/dist/typeit.min.js"></script>       <!-- Docs: https://typeitjs.com/docs/ -->
+  <!-- <script src="js/dist/particles.js"></script>        <!-- Docs: https://github.com/VincentGarreau/particles.js/ -->
+  <!-- <script src="js/dist/fireworks.js"></script> -->
+
+  <!-- custom-made scripts -->
+  <script src="js/user-profile.js"></script>
+  <script src="js/dialogues.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/animations.js"></script>
+
+  <script>
+
+  // window.onload = function(){
+  //   fireworks.setCanvasSize();
+  // }
+
+  // Initialize variables, make DOM calls to lower browser heavinesss
+  var diaIndex = 0;
+  var userAvatar = document.getElementById("user-avatar");
+  var userAvatarImg = document.getElementById("user-avatar-img");
+  var robotAvatarImg = document.getElementById("robot-avatar-img");
+  var typingSoundPlaying = false;
+  var isVideoPlaying = false;
+
+  var instance = new TypeIt('#active-text-window', {
+    speed: 40,
+    strings: [dialogues[0]],
+    deleteSpeed: 3,
+    cursor: true,
+    cursorSpeed: 0,
+    cursorChar: '<img class="next-icon" id="next-icon-id" src="images/chevron-right-outline.svg"></img>',
+    // cursorChar: '<img class="next-icon orange-icon" id="next-icon-id" src="images/chevron-right-outline-orange.svg"></img>',
+
+    callback: function(nextIcon) {
+      console.log(`active-stage: ${diaIndex+1}.`);
+      diaIndex++;
+      showCursor();
+      makeRobotStop();
+      // typingSoundPlaying = false;
+    }
+  });
+
+  // set a timeout for the first animation; we don't want the dialogue to start typing while the robot still makes its entrance.
+  setTimeout(() => {
+    instance.freeze();
+    hideCursor();
+  }, 0);
+
+  setTimeout(() => {
+    instance.unfreeze();
+    makeRobotTalk();
+    // playTypewriterSound();
+  }, 2000);
+
+  dialogueWindow.addEventListener("click", newFunction);
+
+  function newFunction(){
+
+    instance.delete(dialogues[diaIndex-1].length);
+    instance.type(dialogues[diaIndex]);
+    hideCursor();
+
+    setTimeout(() => {
+        makeRobotTalk();
+        // typingSoundPlaying = true;
+        // console.log(typingSoundPlaying);
+    }, 1000);
+
+    // console.log(diaIndex);
+
+    if (diaIndex == 1) {
+      userAvatar.classList.add("user-avatar-untransform");
+    } else if (diaIndex == 3) {
+      summonVideo('china-location');
+    } else if (diaIndex == 4) {
+      setTimeout(() => {
+        userAvatarImg.src="images/user-avatar-B.png";
+        // wait for 2 seconds before changing the avatar
+      }, 2000);
+
+    } else if (diaIndex == 6) {
+      summonVideo('china-personality');
+    }  else if (diaIndex == 8) {
+      summonVideo('china-physicality');
+    }
+
+  }
+
+  document.onkeypress = function(key_dtl){
+    // key_dtl = key_dtl  || window.event;
+    // var uni_code = key_dtl.keyCode || key_dtl.which;
+    // var key_name = String.fromCharCode(uni_code);
+    /* code above listens to what character is pressed */
+
+    newFunction();
+
+    // if lightbox is open:{
+    //    close lightbox.
+    //}
+  }
+
+  function makeRobotTalk(){
+    robotAvatarImg.src="images/talking-robot.gif";
+    console.log("talking-animation started.")
+  }
+
+  function makeRobotStop(){
+    robotAvatarImg.src="images/still-robot.png";
+    console.log("talking-animation terminated.")
+  }
+
+  function hideCursor(){
+    document.querySelectorAll(".ti-cursor")[0].style.opacity = "0";
+  }
+
+  function showCursor(){
+    document.querySelectorAll(".ti-cursor")[0].style.opacity = "1";
+  }
+
+  function summonVideo(url){
+    const instance = basicLightbox.create(`<video autoplay><source src="videos/${url}.mp4" type="video/mp4"></video>`).show();
+
+
+    // if (!isVideoPlaying){
+    //   isVideoPlaying = true;
+    //   const instance = basicLightbox.create(`<video autoplay><source src="videos/${url}.mp4" type="video/mp4"></video>`).show();
+    //   console.log("video is now playing.");
+    // } else if (isVideoPlaying){
+    //   isVideoPlaying = false;
+    //   console.log("video is not playing, closing.");
+    //
+    //   // close the video
+    // }
+  }
+
+  // function playTypewriterSound(){
+  //   var typewriterSound = new Audio("audio/typewriter.mp3");
+  //   typewriterSound.play();
+  //
+  //   typewriterSound.addEventListener('ended', function() {
+  //     if (typingSoundPlaying == true){
+  //       this.currentTime = 0;
+  //       this.play();
+  //     }
+  //   }, false);
+  // }
+
+  </script>
+
+</body>
+
+
+</html>
