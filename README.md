@@ -21,3 +21,5 @@ The data generated during EM exhibitions is collected in a novel installation, e
 As a way to introduce surprise, and educate the public on the emerging influence that data has in our lives, Ray also shares his insights with visitors of EM exhibitions. Ray is featured in the conversational user interface (CUI), to be displayed at one of EM's MidS exhibitions. 
 
 ![Ray CUI](https://i.imgur.com/GYu7q5a.png)
+
+```*Figure 1:* Ray, introducing itself in the conversational user interface. For an online demonstrator, visit this link. The demonstrator can be controlled with either keyboard input of by clicking on the dialogue window.```
