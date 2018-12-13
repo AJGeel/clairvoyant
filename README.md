@@ -22,4 +22,4 @@ As a way to introduce surprise, and educate the public on the emerging influence
 
 ![Ray CUI](https://i.imgur.com/GYu7q5a.png)
 
-```*Figure 1:* Ray, introducing itself in the conversational user interface. For an online demonstrator, visit this link. The demonstrator can be controlled with either keyboard input of by clicking on the dialogue window.```
+```Ray, introducing itself in the conversational user interface. For an online demonstrator, visit this link. The demonstrator can be controlled with either keyboard input of by clicking on the dialogue window.```
