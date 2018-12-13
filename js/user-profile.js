@@ -1,5 +1,5 @@
 var userProfile = {
-  id: "00001",
+  id: "0001",
   avatar: "standard",
 
   continent: "Asia",
