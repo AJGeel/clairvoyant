@@ -2,7 +2,7 @@
 
 ## Project 'Museum in the City'
 
-
+| ---------------------- | -------------------------------------------- |
 | Timeframe              | Sept. '18 — Feb. '19                         |
 | Client                 | Eindhoven Museum                             |
 | Type                   | Design Project (20 ECTS)                     |
