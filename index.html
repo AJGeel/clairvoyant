@@ -55,6 +55,33 @@
 
   <script>
 
+  // Function that parses parameters that were input in the URL
+  function parseURLParams(url) {
+    var queryStart = url.indexOf("?") + 1,
+        queryEnd   = url.indexOf("#") + 1 || url.length + 1,
+        query = url.slice(queryStart, queryEnd - 1),
+        pairs = query.replace(/\+/g, " ").split("&"),
+        parms = {}, i, n, v, nv;
+
+      if (query === url || query === "") return;
+
+      for (i = 0; i < pairs.length; i++) {
+          nv = pairs[i].split("=", 2);
+          n = decodeURIComponent(nv[0]);
+          v = decodeURIComponent(nv[1]);
+
+          if (!parms.hasOwnProperty(n)) parms[n] = [];
+          parms[n].push(nv.length === 2 ? v : null);
+      }
+      return parms;
+    }
+
+    // Grabs URL, used in parsing parameters.
+    var urlString = window.location.href;
+    urlParams = parseURLParams(urlString);
+    console.log(urlParams);
+
+
   // window.onload = function(){
   //   fireworks.setCanvasSize();
   // }
@@ -196,3 +223,15 @@
 
 
 </html>
+
+<!--  To Do's:
+
+    - Close video lightbox at keyboard input
+    - Allow 'correct' user profile to be selected.
+      - Via URI?
+
+        Low Priority:
+        - Segmented typing strings: more organic timing of narration.
+        - Robot idle animation
+        - Typing sounds + correct sound
+        - Optimize animations, guarantee 60fps
