@@ -2,11 +2,10 @@
 
 ## Project 'Museum in the City'
 
-| ---------------------- | -------------------------------------------- |
-| Timeframe              | Sept. '18 — Feb. '19                         |
-| Client                 | Eindhoven Museum                             |
-| Type                   | Design Project (20 ECTS)                     |
-| In collaboration with: | Xueqing Liang, Krishnaa Seck and Yiwen Shen  |
+
+| Timeframe            | Client           | Type                     | In collaboration with       |
+|----------------------|------------------|--------------------------|-----------------------------|
+| Sept. '18 — Feb. '19 | Eindhoven Museum | Design Project (20 ECTS) | X. Liang, K. Seck & Y. Shen |
 
 ---
 
