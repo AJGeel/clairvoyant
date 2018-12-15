@@ -101,7 +101,7 @@ function updateUserValues(){
 
 
   } else if (userProfile.physicality == "active") {
-    userProfile.physicalityBehaviour = ["go all in", "getting rid of you energy like boxing or running"];
+    userProfile.physicalityBehaviour = ["go all in", "getting rid of your energy like boxing or running"];
   }
 
 }

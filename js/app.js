@@ -42,8 +42,8 @@ var dialogIndex = 0,
 
 // Dialogue typing initialisation
 var instance = new TypeIt('#active-text-window', {
-  // speed: 3, /* DEBUG: SUPER FAST TYPING */
-  speed: 40,
+  speed: 3, /* DEBUG: SUPER FAST TYPING */
+  // speed: 40,
   deleteSpeed: 3,
   strings: [dialogues[0]],
   cursor: true,
@@ -110,7 +110,7 @@ function progressDialogue(){
   if (dialogIndex == 1) {
     userAvatar.classList.add("user-avatar-untransform");
   } else if (dialogIndex == 3) {
-    summonVideo('china-location');
+    summonVideo('china-culture');
   } else if (dialogIndex == 4) {
     setTimeout(() => {
       userAvatarImg.src="images/user-avatar-B.png";
@@ -144,7 +144,32 @@ function showCursor(){
 }
 
 function summonVideo(url){
-  const lightboxVideo = basicLightbox.create(`<video autoplay><source src="videos/${url}.mp4" type="video/mp4"></video>`).show();
+  const lbContent = `<video autoplay id="myVideo"><source src="videos/${url}.mp4" type="video/mp4"></video>`;
+
+  const lbInstance = basicLightbox.create(lbContent);
+  lbInstance.show();
+
+  var video = document.getElementsByTagName('video')[0];
+  video.onended = function(e){
+    console.log("$DEBUG video has ended! (closing lightbox)");
+    lbInstance.close();
+  }
+
+  // if (dialogIndex == 4) {
+  //   setTimeout(() => {
+  //     instance.close();
+  //     console.log("NOW!");
+  //   }, 37000);
+  // } else if (dialogIndex == 6){
+  //   setTimeout(() => {
+  //     instance.close();
+  //   }, 23000);
+  // }  else if (dialogIndex == 8){
+  //   setTimeout(() => {
+  //     instance.close();
+  //   }, 21000);
+  // }
+
 
 
   // if (!isVideoPlaying){
