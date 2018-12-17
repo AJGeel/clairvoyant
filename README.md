@@ -3,9 +3,9 @@
 ## Project 'Museum in the City'
 
 
-| Timeframe            | Client           | Type                     | In collaboration with       |
-|----------------------|------------------|--------------------------|-----------------------------|
-| Sept. '18 — Feb. '19 | [Eindhoven Museum](https://eindhovenmuseum.nl/) | Design Project (20 ECTS) | X. Liang, K. Seck & Y. Shen |
+| Timeframe            | Client           | Type                     | In collaboration with       | Under supervision of        |
+|----------------------|------------------|--------------------------|-----------------------------|-----------------------------|
+| Sept. '18 — Feb. '19 | [Eindhoven Museum](https://eindhovenmuseum.nl/) | Design Project (20 ECTS) | X. Liang, [K. Seck](http://krseckdesigns.nl/) & Y. Shen | [prof. dr. ir. J.B.O.S. Martens](https://research.tue.nl/nl/persons/jbos-jean-bernard-martens) |
 
 
 ## Introduction
