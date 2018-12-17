@@ -2,10 +2,12 @@ var userProfile = {
   id: "",
   avatar: "standard",
   alias: "",
-
   continent: "Asia",
   language: "Chinese",
   country: "",
+
+  ethnicity: "",
+  age: "",
 
   // These variables are derivative: based on 'continent' + 'language'.
   greeting: "",
@@ -17,11 +19,15 @@ var userProfile = {
 
   physicality: "relaxed",
   // This variable is derivative: based on 'physicality'.
-  physicalityBehaviour: [""]
+  physicalityBehaviour: [""],
+  raceTime: 0,
+  avgHeartRate: 0,
+  weight: 0,
+
+  favouriteInstallation: "",
 }
 
 function updateUserValues(){
-
 
   if (userProfile.id == "001" || userProfile.id == "shen"){
     userProfile.alias = "Shen"; userProfile.continent = "Asia"; userProfile.language = "Chinese"; userProfile.personality = "right-brained"; userProfile.physicality = "relaxed";

@@ -1,29 +1,9 @@
-// Function that parses parameters that were input in the URL
-function parseURLParams(url) {
-  var queryStart = url.indexOf("?") + 1,
-      queryEnd   = url.indexOf("#") + 1 || url.length + 1,
-      query = url.slice(queryStart, queryEnd - 1),
-      pairs = query.replace(/\+/g, " ").split("&"),
-      parms = {}, i, n, v, nv;
-
-  if (query === url || query === "") return;
-
-  for (i = 0; i < pairs.length; i++) {
-      nv = pairs[i].split("=", 2);
-      n = decodeURIComponent(nv[0]);
-      v = decodeURIComponent(nv[1]);
-
-      if (!parms.hasOwnProperty(n)) parms[n] = [];
-      parms[n].push(nv.length === 2 ? v : null);
-  }
-  return parms;
-}
-
 // Grabs URL, used in parsing parameters.
 var urlString = window.location.href;
 urlParams = parseURLParams(urlString);
 // Change userProfile ID to the query input in URI
 userProfile.id = String(urlParams.id);
+var timeoutTime = 1000;
 
 // Autofill the user profiles based on preset logic. Will be 'learnt' using machine learning once data is abundant and high of quality.
 updateUserValues();
@@ -38,7 +18,8 @@ var dialogues = [
 
   // START CHAPTER 1 —— CULTURE
   `Where should I start? Oh, I know! Let’s take a look at <span class="highlight">which continent</span> you are from... You are from . . .`,
-  `So you're from <span class="highlight">${userProfile.country}</span> &mdash; correct? ${userProfile.greeting}! you can probably speak ${userProfile.language}, right? My calculations predict that you really value <span class="highlight">${userProfile.culturalValues[0]}</span>, <span class="highlight">${userProfile.culturalValues[1]}</span> and <span class="highlight">${userProfile.culturalValues[2]}</span>.`,
+  // `So you're from <span class="highlight">${userProfile.country}</span> &mdash; correct? ${userProfile.greeting}! you can probably speak ${userProfile.language}, right? My calculations predict that you really value <span class="highlight">${userProfile.culturalValues[0]}</span>, <span class="highlight">${userProfile.culturalValues[1]}</span> and <span class="highlight">${userProfile.culturalValues[2]}</span>.`,
+  `&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;`,
   `I have updated your avatar to a <span class="highlight">${userProfile.avatar}</span> to represent your continent.`,
 
 
@@ -49,7 +30,8 @@ var dialogues = [
 
   // START CHAPTER 3 —— PHYSICALITY
   `Now let’s take a look at your preferences in <span class="highlight">physicality</span>. I can tell that you are..`,
-  `That's all I know. What'd you think, did you like this?`,
+  `That was quite a lot, wasn't it? Was I right in some of my guesses? Here, I'll explain how I knew all the things I just told you.`,
+  `&nbsp;`,
 ];
 
 // window.onload = function(){
@@ -65,9 +47,8 @@ var dialogIndex = 0,
 
 // Dialogue typing initialisation
 var instance = new TypeIt('#active-text-window', {
-  speed: 3, /* DEV OPTION: SUPER FAST TYPING */
-  // speed: 40,
-
+  // speed: 3, /* DEV OPTION: SUPER FAST TYPING */
+  speed: 40,
   deleteSpeed: 3,
   strings: [dialogues[0]],
   cursor: true,
@@ -81,7 +62,7 @@ var instance = new TypeIt('#active-text-window', {
     dialogIndex++;
     showCursor();
     robotIdle();
-    // typingSoundPlaying = false;
+    typingSoundPlaying = false;
   }
 });
 
@@ -105,7 +86,6 @@ dialogueWindow.addEventListener("click", progressDialogue);
 // If any button is pressed, progress the dialogue.
 document.onkeypress = function(key_dtl){
   // key_dtl = key_dtl  || window.event; var uni_code = key_dtl.keyCode key_dtl.which; var key_name = String.fromCharCode(uni_code);
-
   progressDialogue();
 }
 
@@ -124,6 +104,8 @@ function progressDialogue(){
   if (dialogIndex == 1) {
     // Make the user avatar appear from the right bottom corner.
     userAvatar.classList.add("user-avatar-untransform");
+  } else if (dialogIndex == 2){
+    timeoutTime = 4000;
   } else if (dialogIndex == 3) {
     summonVideo('culture');
   } else if (dialogIndex == 4) {
@@ -137,6 +119,8 @@ function progressDialogue(){
     summonVideo('personality');
   }  else if (dialogIndex == 8) {
     summonVideo('physicality');
+  } else if (dialogIndex == 9){
+    summonImage();
   }
 
 }
@@ -197,14 +181,42 @@ function summonVideo(videoStage){
   }
 }
 
-// function playTypewriterSound(){
-//   var typewriterSound = new Audio("audio/typewriter.mp3");
-//   typewriterSound.play();
-//
-//   typewriterSound.addEventListener('ended', function() {
-//     if (typingSoundPlaying == true){
-//       this.currentTime = 0;
-//       this.play();
-//     }
-//   }, false);
-// }
+function summonImage(){
+  const lbContent = `<img width="1920" height="1080" src="https://placehold.it/1920x1080">`;
+  const lbInstance = basicLightbox.create(lbContent);
+  lbInstance.show();
+
+}
+
+function playTypewriterSound(){
+  var typewriterSound = new Audio("audio/typewriter.mp3");
+  typewriterSound.play();
+
+  typewriterSound.addEventListener('ended', function() {
+    if (typingSoundPlaying == true){
+      this.currentTime = 0;
+      this.play();
+    }
+  }, false);
+}
+
+// Function that parses parameters that were input in the URL
+function parseURLParams(url) {
+  var queryStart = url.indexOf("?") + 1,
+      queryEnd   = url.indexOf("#") + 1 || url.length + 1,
+      query = url.slice(queryStart, queryEnd - 1),
+      pairs = query.replace(/\+/g, " ").split("&"),
+      parms = {}, i, n, v, nv;
+
+  if (query === url || query === "") return;
+
+  for (i = 0; i < pairs.length; i++) {
+      nv = pairs[i].split("=", 2);
+      n = decodeURIComponent(nv[0]);
+      v = decodeURIComponent(nv[1]);
+
+      if (!parms.hasOwnProperty(n)) parms[n] = [];
+      parms[n].push(nv.length === 2 ? v : null);
+  }
+  return parms;
+}
