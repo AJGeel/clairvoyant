@@ -4,7 +4,7 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<title>Ray — Eindhoven Museum's Artifically Intelligent Entity</title>
+<title>Ray — EM's Artifically Intelligent Entity</title>
 
 <link href="css/reset.css" rel="stylesheet" />
 <link href="css/style.css" rel="stylesheet" />
@@ -20,16 +20,17 @@
 <body>
 
   <!-- <canvas style="position: absolute; z-index: 1337" class="fireworks"></canvas> -->
+  <div id="particles-js"></div>
 
   <div class="dark-overlay"></div>
 
   <div class="container">
-    <div class="robot-avatar em-glow"><img id="robot-avatar-img" src="images/still-robot.png"></img></div>
+    <div class="robot-avatar em-glow"><img id="robot-avatar-img" src="images/avatars/still-robot.png"></img></div>
 
-    <div class="em-glow" id="user-avatar"><img id="user-avatar-img" src="images/user-avatar-neutral.png"></img></div>
+    <div class="em-glow" id="user-avatar"><img id="user-avatar-img" src="images/avatars/user-avatar-neutral.png"></img></div>
 
-    <div class="dialogue-window">
-      <p class="dialogue-text em-glow" id="active-text-window"></p>
+    <div class="dialogue-window em-glow">
+      <p class="dialogue-text" id="active-text-window"></p>
     </div>
 
   </div>
@@ -44,7 +45,7 @@
   <script src="js/dist/basicLightbox.min.js"></script>    <!-- https://github.com/electerious/basicLightbox    -->
   <script src="js/dist/anime.min.js"></script>            <!-- http://animejs.com/documentation/               -->
   <script src="js/dist/typeit.min.js"></script>           <!-- https://typeitjs.com/docs/                      -->
-  <!-- <script src="js/dist/particles.js"></script-->     <!-- https://github.com/VincentGarreau/particles.js/ -->
+  <script src="js/dist/particles.min.js"></script>        <!-- https://github.com/VincentGarreau/particles.js/ -->
   <!-- <script src="js/dist/fireworks.js"></script> -->
 
   <!-- custom scripts -->

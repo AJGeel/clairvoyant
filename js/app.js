@@ -5,19 +5,23 @@ urlParams = parseURLParams(urlString);
 userProfile.id = String(urlParams.id);
 var timeoutTime = 1000;
 
+particlesJS.load('particles-js', 'js/dist/particles.json', function() {
+  console.log('callback - particles.js config loaded');
+});
+
 // Autofill the user profiles based on preset logic. Will be 'learnt' using machine learning once data is abundant and high of quality.
 updateUserValues();
 
 // Todo: segment this in a different file.
 var dialogues = [
   `Hello, <span class="highlight">my name is Ray</span>. I am an installation from the Eindhoven Museum &mdash; a place where we love to do experiments. So much in fact, that we are doing one <span class="highlight">right now</span>.`,
-  `See the avatar on the <span class="highlight">bottom right</span>? That\'s you, but it doesn\'t really resemble you, does it? Let’s dive in a bit deeper and see what I have learned about you.`,
+  `Do you see the avatar on the <span class="highlight">bottom right</span>? That\'s you, but it\'s not really close, is it? Let’s dive in a bit deeper and see what I\'ve learned about you during your visit.`,
 
   // user input was removed for this build as to streamline the development process
   // 'Before we start I would like to ask you: can I <span class="highlight">open my eyes</span> so that I can see you better?'
 
   // START CHAPTER 1 —— CULTURE
-  `Where should I start? Oh, I know! Let’s take a look at <span class="highlight">which continent</span> you are from... You are from . . .`,
+  `Where should I start? Oh, I know! Let’s take a look at <span class="highlight">which continent</span> you are from . . .</div> `,
   // `So you're from <span class="highlight">${userProfile.country}</span> &mdash; correct? ${userProfile.greeting}! you can probably speak ${userProfile.language}, right? My calculations predict that you really value <span class="highlight">${userProfile.culturalValues[0]}</span>, <span class="highlight">${userProfile.culturalValues[1]}</span> and <span class="highlight">${userProfile.culturalValues[2]}</span>.`,
   `&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;`,
   `I have updated your avatar to a <span class="highlight">${userProfile.avatar}</span> to represent your continent.`,
@@ -126,7 +130,7 @@ function progressDialogue(){
 }
 
 function changeAvatarImg(){
-  const avatarPrefix = "images/user-avatar-";
+  const avatarPrefix = "images/avatars/user-avatar-";
 
   if (userProfile.avatar == "Giant Panda"){
     userAvatarImg.src=`${avatarPrefix}panda.png`;
@@ -136,12 +140,12 @@ function changeAvatarImg(){
 }
 
 function robotTalkingAnimation(){
-  robotAvatarImg.src="images/talking-robot.gif";
+  robotAvatarImg.src="images/avatars/talking-robot.gif";
   console.log("$DEBUG talking-animation started.")
 }
 
 function robotIdle(){
-  robotAvatarImg.src="images/still-robot.png";
+  robotAvatarImg.src="images/avatars/still-robot.png";
   console.log("$DEBUG talking-animation terminated.")
 }
 
