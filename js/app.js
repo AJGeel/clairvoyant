@@ -1,15 +1,14 @@
-// Grabs URL, used in parsing parameters.
-var urlString = window.location.href;
-urlParams = parseURLParams(urlString);
-// Change userProfile ID to the query input in URI
-userProfile.id = String(urlParams.id);
-var timeoutTime = 1000;
+console.log("$DEBUG The code compiled! Great success 🎉")
 
+// Initialize js particles configuration.
 particlesJS.load('particles-js', 'js/dist/particles.json', function() {
-  console.log('callback - particles.js config loaded');
+  console.log('$DEBUG particles.js config loaded');
 });
 
-// Autofill the user profiles based on preset logic. Will be 'learnt' using machine learning once data is abundant and high of quality.
+// Read the URL for parameters. We use this to target user data.
+implementURLParams();
+
+// Auto-complete the user profile according to the designed algorithm. This will be 'learnt' using machine learning once data is abundant and high of quality.
 updateUserValues();
 
 // Todo: segment this in a different file.
@@ -22,8 +21,8 @@ var dialogues = [
 
   // START CHAPTER 1 —— CULTURE
   `Where should I start? Oh, I know! Let’s take a look at <span class="highlight">which continent</span> you are from . . .</div> `,
-  // `So you're from <span class="highlight">${userProfile.country}</span> &mdash; correct? ${userProfile.greeting}! you can probably speak ${userProfile.language}, right? My calculations predict that you really value <span class="highlight">${userProfile.culturalValues[0]}</span>, <span class="highlight">${userProfile.culturalValues[1]}</span> and <span class="highlight">${userProfile.culturalValues[2]}</span>.`,
-  `&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;`,
+  `So you're from <span class="highlight">${userProfile.country}</span> &mdash; correct? ${userProfile.greeting}! you can probably speak ${userProfile.language}, right? My calculations predict that you really value <span class="highlight">${userProfile.culturalValues[0]}</span>, <span class="highlight">${userProfile.culturalValues[1]}</span> and <span class="highlight">${userProfile.culturalValues[2]}</span>.`,
+  // `&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;`,
   `I have updated your avatar to a <span class="highlight">${userProfile.avatar}</span> to represent your continent.`,
 
 
@@ -33,7 +32,7 @@ var dialogues = [
   // `Now would be a good time to <span class="highlight">learn Dutch</span> to get to know this country a bit better!`,
 
   // START CHAPTER 3 —— PHYSICALITY
-  `Now let’s take a look at your preferences in <span class="highlight">physicality</span>. I can tell that you are..`,
+  `Finally, let’s take a look at your preferences in <span class="highlight">activity</span>. I can tell that you are..`,
   `That was quite a lot, wasn't it? Was I right in some of my guesses? Here, I'll explain how I knew all the things I just told you.`,
   `&nbsp;`,
 ];
@@ -52,8 +51,8 @@ var dialogIndex = 0,
 // Dialogue typing initialisation
 var instance = new TypeIt('#active-text-window', {
   // speed: 3, /* DEV OPTION: SUPER FAST TYPING */
-  speed: 40,
-  deleteSpeed: 3,
+  speed: 30,
+  deleteSpeed: 2,
   strings: [dialogues[0]],
   cursor: true,
   cursorSpeed: 0,
@@ -158,25 +157,14 @@ function showCursor(){
 }
 
 function summonVideo(videoStage){
-  if (userProfile.continent == "Asia"){
-    videoContinent = "as";
-  } else if (userProfile.continent == "Europe"){
-    videoContinent = "eu";
-  }
+  generatePersonalUrl();
+  var videoUrl = `videos/${myUrl}-${videoStage}.mp4`;
 
-  if (userProfile.personality == "left-brained"){
-    videoPersonality = "left";
-  } else if (userProfile.personality == "right-brained"){
-    videoPersonality = "right";
-  }
-
-  var videoUrl = `${videoContinent}-${videoPersonality}-${userProfile.physicality}-${videoStage}`;
-
-  console.log(`$DEBUG now playing '${videoUrl}.mp4' `)
-  const lbContent = `<video autoplay id="myVideo"><source src="videos/${videoUrl}.mp4" type="video/mp4"></video>`;
+  const lbContent = `<video autoplay id="myVideo"><source src="${videoUrl}" type="video/mp4"></video>`;
 
   const lbInstance = basicLightbox.create(lbContent);
   lbInstance.show();
+  console.log(`$DEBUG now playing '${videoUrl}' `)
 
   var video = document.getElementsByTagName('video')[0];
   video.onended = function(e){
@@ -186,7 +174,10 @@ function summonVideo(videoStage){
 }
 
 function summonImage(){
-  const lbContent = `<img width="1920" height="1080" src="https://placehold.it/1920x1080">`;
+  generatePersonalUrl();
+  const imageUrl = `images/data-visualisations/${myUrl}.jpg`;
+
+  const lbContent = `<img width="1920" height="1080" src="images/data-visualisations/data-visualisation-sample.png">`;
   const lbInstance = basicLightbox.create(lbContent);
   lbInstance.show();
 
@@ -202,6 +193,23 @@ function playTypewriterSound(){
       this.play();
     }
   }, false);
+}
+
+function implementURLParams(){
+  // Grabs URL, used in parsing parameters.
+  var urlString = window.location.href;
+
+  try {
+    urlParams = parseURLParams(urlString);
+    // Change userProfile ID to the query input in URI
+    userProfile.id = String(urlParams.id);
+  }
+  catch(ohjee){
+    // Error shows up when there is no parameter added to the URL
+    console.log("$DEBUG No parameters in the URL, no problem. We'll go for a random one instead.");
+    var randomInt = getRandomInt(14) + 1;
+    userProfile.id = ("000" + randomInt).substr(-3,3);
+  }
 }
 
 // Function that parses parameters that were input in the URL
@@ -223,4 +231,24 @@ function parseURLParams(url) {
       parms[n].push(nv.length === 2 ? v : null);
   }
   return parms;
+}
+
+function getRandomInt(max){
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
+function generatePersonalUrl(){
+  if (userProfile.continent == "Asia"){
+    myContinent = "as";
+  } else if (userProfile.continent == "Europe"){
+    myContinent = "eu";
+  }
+
+  if (userProfile.personality == "left-brained"){
+    myPersonality = "left";
+  } else if (userProfile.personality == "right-brained"){
+    myPersonality = "right";
+  }
+
+  myUrl = `${myContinent}-${myPersonality}-${userProfile.physicality}`;
 }

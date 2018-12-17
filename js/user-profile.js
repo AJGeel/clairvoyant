@@ -62,8 +62,6 @@ function updateUserValues(){
     userProfile.alias = "Shen"; userProfile.continent = "Asia"; userProfile.language = "Chinese"; userProfile.personality = "right-brained"; userProfile.physicality = "relaxed";
   }
 
-  console.log(`$DEBUG user profile updated to '${userProfile.alias}'`)
-
   // Stage 1: culture + language
   if (userProfile.continent == "Asia") {
     userProfile.culturalValues = ["harmony", "wisdom", "righteousness"];
@@ -156,5 +154,7 @@ function updateUserValues(){
   } else if (userProfile.physicality == "active") {
     userProfile.physicalityBehaviour = ["go all in", "getting rid of your energy like boxing or running"];
   }
+
+  console.log(`$DEBUG user profile updated to '${userProfile.alias}' 🕵🏻‍♂️`)
 
 }
