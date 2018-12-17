@@ -50,9 +50,10 @@ var dialogIndex = 0,
 
 // Dialogue typing initialisation
 var instance = new TypeIt('#active-text-window', {
-  // speed: 3, /* DEV OPTION: SUPER FAST TYPING */
+  // speed: 0, /* DEV OPTION: SUPER FAST TYPING */
+  // deleteSpeed: 0, /* DEV OPTION: SUPER FAST TYPING */
   speed: 30,
-  deleteSpeed: 2,
+  deleteSpeed: 5,
   strings: [dialogues[0]],
   cursor: true,
   cursorSpeed: 0,
@@ -94,36 +95,41 @@ document.onkeypress = function(key_dtl){
 
 function progressDialogue(){
 
-  instance.delete(dialogues[dialogIndex-1].length);
-  instance.type(dialogues[dialogIndex]);
-  hideCursor();
+  if (dialogues.length > dialogIndex){
 
-  setTimeout(() => {
-      robotTalkingAnimation();
-      // typingSoundPlaying = true;
-      // console.log(typingSoundPlaying);
-  }, 1000);
+    instance.delete(dialogues[dialogIndex-1].length);
+    instance.type(dialogues[dialogIndex]);
+    hideCursor();
 
-  if (dialogIndex == 1) {
-    // Make the user avatar appear from the right bottom corner.
-    userAvatar.classList.add("user-avatar-untransform");
-  } else if (dialogIndex == 2){
-    timeoutTime = 4000;
-  } else if (dialogIndex == 3) {
-    summonVideo('culture');
-  } else if (dialogIndex == 4) {
     setTimeout(() => {
-      // Wait for 2 seconds before changing the avatar
-      changeAvatarImg();
-      // Play animation to help draw attention to the avatar change
-    }, 2000);
+        robotTalkingAnimation();
+        // typingSoundPlaying = true;
+        // console.log(typingSoundPlaying);
+    }, 1000);
 
-  } else if (dialogIndex == 6) {
-    summonVideo('personality');
-  }  else if (dialogIndex == 8) {
-    summonVideo('physicality');
-  } else if (dialogIndex == 9){
-    summonImage();
+    if (dialogIndex == 1) {
+      // Make the user avatar appear from the right bottom corner.
+      userAvatar.classList.add("user-avatar-untransform");
+    } else if (dialogIndex == 2){
+      timeoutTime = 4000;
+    } else if (dialogIndex == 3) {
+      summonVideo('culture');
+    } else if (dialogIndex == 4) {
+      setTimeout(() => {
+        // Wait for 2 seconds before changing the avatar
+        changeAvatarImg();
+        // Play animation to help draw attention to the avatar change
+      }, 2000);
+
+    } else if (dialogIndex == 6) {
+      summonVideo('personality');
+    }  else if (dialogIndex == 8) {
+      summonVideo('physicality');
+    } else if (dialogIndex == 9){
+      summonImage();
+    }
+  } else {
+    console.log("$DEBUG That's all, folks!");
   }
 
 }

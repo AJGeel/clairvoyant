@@ -8,6 +8,7 @@ var userProfile = {
 
   ethnicity: "",
   age: "",
+  gender: "",
 
   // These variables are derivative: based on 'continent' + 'language'.
   greeting: "",
@@ -24,7 +25,17 @@ var userProfile = {
   avgHeartRate: 0,
   weight: 0,
 
+  averageEmotion: "",
   favouriteInstallation: "",
+  totalTimeSpent: 0,
+  returnVisitor: false,
+
+  languageSpoken: [""],
+  profession: "",
+  educationLevel: "",
+
+  isInGroup: false,
+  groupDynamics: "",
 }
 
 function updateUserValues(){
