@@ -25,7 +25,7 @@ urlParams = parseURLParams(urlString);
 // Change userProfile ID to the query input in URI
 userProfile.id = String(urlParams.id);
 
-// Autofill the user profiles based on preset logic
+// Autofill the user profiles based on preset logic. Will be 'learnt' using machine learning once data is abundant and high of quality.
 updateUserValues();
 
 // Todo: segment this in a different file.
@@ -39,7 +39,7 @@ var dialogues = [
   // START CHAPTER 1 —— CULTURE
   `Where should I start? Oh, I know! Let’s take a look at <span class="highlight">which continent</span> you are from... You are from . . .`,
   // `<span class="highlight">${userProfile.continent}</span> &mdash; correct? ${userProfile.greeting}! you can probably speak ${userProfile.language}, right? My calculations predict that you really value <span class="highlight">${userProfile.culturalValues[0]}</span>, <span class="highlight">${userProfile.culturalValues[1]}</span> and <span class="highlight">${userProfile.culturalValues[2]}</span>.`,
-  `So you're from ${userProfile.country} &mdash; correct? ${userProfile.greeting}! you can probably speak ${userProfile.language}, right? My calculations predict that you really value <span class="highlight">${userProfile.culturalValues[0]}</span>, <span class="highlight">${userProfile.culturalValues[1]}</span> and <span class="highlight">${userProfile.culturalValues[2]}</span>.`,
+  `So you're from <span class="highlight">${userProfile.country}</span> &mdash; correct? ${userProfile.greeting}! you can probably speak ${userProfile.language}, right? My calculations predict that you really value <span class="highlight">${userProfile.culturalValues[0]}</span>, <span class="highlight">${userProfile.culturalValues[1]}</span> and <span class="highlight">${userProfile.culturalValues[2]}</span>.`,
   `I have updated your avatar to a <span class="highlight">${userProfile.avatar}</span> to represent your continent.`,
 
 
@@ -57,7 +57,7 @@ var dialogues = [
 //   fireworks.setCanvasSize();
 // }
 
-// Initialize variables, make DOM calls to lower browser heavinesss
+// Initialize variables, make DOM calls to lower resources required by browser.
 var dialogIndex = 0,
     userAvatar = document.getElementById("user-avatar"),
     userAvatarImg = document.getElementById("user-avatar-img"),
@@ -65,19 +65,16 @@ var dialogIndex = 0,
     typingSoundPlaying = false,
     isVideoPlaying = false;
 
-// const lb = basicLightbox.create(``);
-// lb.show();
-
 // Dialogue typing initialisation
 var instance = new TypeIt('#active-text-window', {
-  // speed: 3, /* DEBUG: SUPER FAST TYPING */
-  speed: 40,
+  speed: 3, /* DEV OPTION: SUPER FAST TYPING */
+  // speed: 40,
   deleteSpeed: 3,
   strings: [dialogues[0]],
   cursor: true,
   cursorSpeed: 0,
   cursorChar: '<img class="next-icon" id="next-icon-id" src="images/chevron-right-outline.svg"></img>',
-  // cursorChar: '<img class="next-icon orange-icon" id="next-icon-id" src="images/chevron-right-outline-orange.svg"></img>',
+  // cursorChar: '<img class="next-icon orange-icon" id="next-icon-id" src="images/chevron-right-outline-orange.svg"></img>', /*option: have an EM-orange coloured cursor char*/
 
   callback: function(nextIcon) {
     // When the typing has been completed, increase the dialogue index, show the cursor and make the robot stop talking. (AND stop the typing sound)
@@ -125,26 +122,34 @@ function progressDialogue(){
       // console.log(typingSoundPlaying);
   }, 1000);
 
-  // console.log(dialogIndex);
-
   if (dialogIndex == 1) {
+    // Make the user avatar appear from the right bottom corner.
     userAvatar.classList.add("user-avatar-untransform");
   } else if (dialogIndex == 3) {
-    summonVideo('china-culture');
+    summonVideo('location');
   } else if (dialogIndex == 4) {
     setTimeout(() => {
-      userAvatarImg.src="images/user-avatar-panda.png";
-      // userAvatarImg.src="images/user-avatar-wolf.png";
-
-      // wait for 2 seconds before changing the avatar
+      // Wait for 2 seconds before changing the avatar
+      changeAvatarImg();
+      // Play animation to help draw attention to the avatar change
     }, 2000);
 
   } else if (dialogIndex == 6) {
-    summonVideo('china-personality');
+    summonVideo('personality');
   }  else if (dialogIndex == 8) {
-    summonVideo('china-physicality');
+    summonVideo('physicality');
   }
 
+}
+
+function changeAvatarImg(){
+  const avatarPrefix = "images/user-avatar-";
+
+  if (userProfile.avatar == "Giant Panda"){
+    userAvatarImg.src=`${avatarPrefix}panda.png`;
+  } else if (userProfile.avatar == "Eurasian Wolf"){
+    userAvatarImg.src=`${avatarPrefix}wolf.png`;
+  }
 }
 
 function makeRobotTalk(){
@@ -165,8 +170,23 @@ function showCursor(){
   document.querySelectorAll(".ti-cursor")[0].style.opacity = "1";
 }
 
-function summonVideo(url){
-  const lbContent = `<video autoplay id="myVideo"><source src="videos/${url}.mp4" type="video/mp4"></video>`;
+function summonVideo(videoStage){
+  if (userProfile.continent == "Asia"){
+    videoContinent = "as";
+  } else if (userProfile.continent == "Europe"){
+    videoContinent = "eu";
+  }
+
+  if (userProfile.personality == "left-brained"){
+    videoPersonality = "left";
+  } else if (userProfile.personality == "right-brained"){
+    videoPersonality = "right";
+  }
+
+  var videoUrl = `${videoContinent}-${videoPersonality}-${userProfile.physicality}-${videoStage}`;
+
+  console.log(`$DEBUG now playing '${videoUrl}.mp4' `)
+  const lbContent = `<video autoplay id="myVideo"><source src="videos/${videoUrl}.mp4" type="video/mp4"></video>`;
 
   const lbInstance = basicLightbox.create(lbContent);
   lbInstance.show();
@@ -176,34 +196,6 @@ function summonVideo(url){
     console.log("$DEBUG video has ended! (closing lightbox)");
     lbInstance.close();
   }
-
-  // if (dialogIndex == 4) {
-  //   setTimeout(() => {
-  //     instance.close();
-  //     console.log("NOW!");
-  //   }, 37000);
-  // } else if (dialogIndex == 6){
-  //   setTimeout(() => {
-  //     instance.close();
-  //   }, 23000);
-  // }  else if (dialogIndex == 8){
-  //   setTimeout(() => {
-  //     instance.close();
-  //   }, 21000);
-  // }
-
-
-
-  // if (!isVideoPlaying){
-  //   isVideoPlaying = true;
-  //   const instance = basicLightbox.create(`<video autoplay><source src="videos/${url}.mp4" type="video/mp4"></video>`).show();
-  //   console.log("video is now playing.");
-  // } else if (isVideoPlaying){
-  //   isVideoPlaying = false;
-  //   console.log("video is not playing, closing.");
-  //
-  //   // close the video
-  // }
 }
 
 // function playTypewriterSound(){
