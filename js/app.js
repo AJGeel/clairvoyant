@@ -38,15 +38,14 @@ var dialogues = [
 
   // START CHAPTER 1 —— CULTURE
   `Where should I start? Oh, I know! Let’s take a look at <span class="highlight">which continent</span> you are from... You are from . . .`,
-  // `<span class="highlight">${userProfile.continent}</span> &mdash; correct? ${userProfile.greeting}! you can probably speak ${userProfile.language}, right? My calculations predict that you really value <span class="highlight">${userProfile.culturalValues[0]}</span>, <span class="highlight">${userProfile.culturalValues[1]}</span> and <span class="highlight">${userProfile.culturalValues[2]}</span>.`,
   `So you're from <span class="highlight">${userProfile.country}</span> &mdash; correct? ${userProfile.greeting}! you can probably speak ${userProfile.language}, right? My calculations predict that you really value <span class="highlight">${userProfile.culturalValues[0]}</span>, <span class="highlight">${userProfile.culturalValues[1]}</span> and <span class="highlight">${userProfile.culturalValues[2]}</span>.`,
   `I have updated your avatar to a <span class="highlight">${userProfile.avatar}</span> to represent your continent.`,
 
 
   // START CHAPTER 2 —— PERSONALITY
   `Now let’s dive a bit deeper into your <span class="highlight">personality</span>.`,
-  // `I can tell that you are a person that <span class="highlight">thinks in ${userProfile.personalityBehaviour[0]}</span> and <span class="highlight">relies on ${userProfile.personalityBehaviour[1]}</span>. You\'re very ${userProfile.personalityBehaviour[2]} and ${userProfile.personalityBehaviour[3]} — good at <span class="highlight">${userProfile.personalityBehaviour[4]}</span> and ${userProfile.personalityBehaviour[5]}.`,
-  `Now would be a good time to <span class="highlight">learn Dutch</span> to get to know this country a bit better!`,
+  `I can tell that you are a person that <span class="highlight">thinks in ${userProfile.personalityBehaviour[0]}</span> and <span class="highlight">relies on ${userProfile.personalityBehaviour[1]}</span>. You\'re very ${userProfile.personalityBehaviour[2]} and ${userProfile.personalityBehaviour[3]} — good at <span class="highlight">${userProfile.personalityBehaviour[4]}</span> and ${userProfile.personalityBehaviour[5]}.`,
+  // `Now would be a good time to <span class="highlight">learn Dutch</span> to get to know this country a bit better!`,
 
   // START CHAPTER 3 —— PHYSICALITY
   `Now let’s take a look at your preferences in <span class="highlight">physicality</span>. I can tell that you are..`,
@@ -62,13 +61,13 @@ var dialogIndex = 0,
     userAvatar = document.getElementById("user-avatar"),
     userAvatarImg = document.getElementById("user-avatar-img"),
     robotAvatarImg = document.getElementById("robot-avatar-img"),
-    typingSoundPlaying = false,
-    isVideoPlaying = false;
+    typingSoundPlaying = false;
 
 // Dialogue typing initialisation
 var instance = new TypeIt('#active-text-window', {
   speed: 3, /* DEV OPTION: SUPER FAST TYPING */
   // speed: 40,
+
   deleteSpeed: 3,
   strings: [dialogues[0]],
   cursor: true,
@@ -81,7 +80,7 @@ var instance = new TypeIt('#active-text-window', {
     console.log(`$DEBUG active-stage: ${dialogIndex+1}.`);
     dialogIndex++;
     showCursor();
-    makeRobotStop();
+    robotIdle();
     // typingSoundPlaying = false;
   }
 });
@@ -94,7 +93,7 @@ setTimeout(() => {
 
 setTimeout(() => {
   instance.unfreeze();
-  makeRobotTalk();
+  robotTalkingAnimation();
   // playTypewriterSound();
 }, 2000);
 
@@ -117,7 +116,7 @@ function progressDialogue(){
   hideCursor();
 
   setTimeout(() => {
-      makeRobotTalk();
+      robotTalkingAnimation();
       // typingSoundPlaying = true;
       // console.log(typingSoundPlaying);
   }, 1000);
@@ -126,7 +125,7 @@ function progressDialogue(){
     // Make the user avatar appear from the right bottom corner.
     userAvatar.classList.add("user-avatar-untransform");
   } else if (dialogIndex == 3) {
-    summonVideo('location');
+    summonVideo('culture');
   } else if (dialogIndex == 4) {
     setTimeout(() => {
       // Wait for 2 seconds before changing the avatar
@@ -152,12 +151,12 @@ function changeAvatarImg(){
   }
 }
 
-function makeRobotTalk(){
+function robotTalkingAnimation(){
   robotAvatarImg.src="images/talking-robot.gif";
   console.log("$DEBUG talking-animation started.")
 }
 
-function makeRobotStop(){
+function robotIdle(){
   robotAvatarImg.src="images/still-robot.png";
   console.log("$DEBUG talking-animation terminated.")
 }

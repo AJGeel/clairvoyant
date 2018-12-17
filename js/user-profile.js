@@ -34,7 +34,7 @@ function updateUserValues(){
   } else if (userProfile.id == "005" || userProfile.id == "jb"){
     userProfile.alias = "Jean-Bernard"; userProfile.continent = "Europe"; userProfile.language = "Dutch"; userProfile.personality = "left-brained"; userProfile.physicality = "relaxed";
   } else if (userProfile.id == "006" || userProfile.id == "javed"){
-    userProfile.alias = "Javed"; userProfile.continent = "Europe"; userProfile.language = "Greek"; userProfile.personality = "left-brained"; userProfile.physicality = "relaxed";
+    userProfile.alias = "Javed"; userProfile.continent = "Europe"; userProfile.country = "Greece"; userProfile.language = "Greek"; userProfile.personality = "left-brained"; userProfile.physicality = "relaxed";
   } else if (userProfile.id == "007" || userProfile.id == "ward"){
     userProfile.alias = "Ward"; userProfile.continent = "Europe"; userProfile.language = "Dutch"; userProfile.personality = "right-brained"; userProfile.physicality = "active";
   } else if (userProfile.id == "008" || userProfile.id == "daan"){
@@ -51,7 +51,12 @@ function updateUserValues(){
     userProfile.alias = "Heleen"; userProfile.continent = "Europe"; userProfile.language = "Dutch"; userProfile.personality = "left-brained"; userProfile.physicality = "relaxed";
   } else if (userProfile.id == "014"){
     userProfile.alias = "Jelte"; userProfile.continent = "Europe"; userProfile.language = "Dutch"; userProfile.personality = "right-brained"; userProfile.physicality = "relaxed";
+  } else {
+    // redirect to Shen's profile in case of failure or error.
+    userProfile.alias = "Shen"; userProfile.continent = "Asia"; userProfile.language = "Chinese"; userProfile.personality = "right-brained"; userProfile.physicality = "relaxed";
   }
+
+  console.log(`$DEBUG user profile updated to '${userProfile.alias}'`)
 
   // Stage 1: culture + language
   if (userProfile.continent == "Asia") {
@@ -87,7 +92,7 @@ function updateUserValues(){
     } else if (userProfile.language == "French") {
       userProfile.country = "France";
       userProfile.greeting = "Bonjour";
-      // different French values
+      userProfile.culturalValues = ["pride", "intellectuality", "style"];
 
     } else if (userProfile.language == "Dutch") {
       userProfile.country = "The Netherlands or Belgium";
@@ -97,7 +102,7 @@ function updateUserValues(){
     } else if (userProfile.language == "German") {
       userProfile.country = "Germany";
       userProfile.greeting = "Gutentag";
-      userProfile.culturalValues = ["punctual", "structural", "stability"];
+      userProfile.culturalValues = ["punctuality", "structuredness", "stability"];
 
     } else if (userProfile.language == "Lithuanian") {
       userProfile.country = "Lithuania";
@@ -133,7 +138,6 @@ function updateUserValues(){
   if (userProfile.personality == "left-brained") {
     userProfile.personalityBehaviour = ["words", "facts", "analytical", "a logical thinker", "solving technical problems", "pick up languages quite fast"];
 
-
   } else if (userProfile.personality == "right-brained") {
     userProfile.personalityBehaviour = ["images", "feelings", "creative", "an imaginative thinker", "doing artistic activities", "have a very good intuition for problems"];
   }
@@ -146,7 +150,5 @@ function updateUserValues(){
   } else if (userProfile.physicality == "active") {
     userProfile.physicalityBehaviour = ["go all in", "getting rid of your energy like boxing or running"];
   }
-
-  console.log(`$DEBUG user profile updated to '${userProfile.alias}'`)
 
 }
