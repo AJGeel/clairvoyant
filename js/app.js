@@ -183,8 +183,7 @@ function summonVideo(videoStage){
 function summonImage(){
   generatePersonalUrl();
   const imageUrl = `images/data-visualisations/${myUrl}.jpg`;
-
-  
+  const altImageUrl = `images/data-visualisations/${userProfile.id}.jpg`;
 
   const lbContent = `<img width="1920" height="1080" src="images/data-visualisations/data-visualisation-sample.png">`;
   const lbInstance = basicLightbox.create(lbContent);
@@ -260,4 +259,5 @@ function generatePersonalUrl(){
   }
 
   myUrl = `${myContinent}-${myPersonality}-${userProfile.physicality}`;
+
 }

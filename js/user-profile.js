@@ -21,6 +21,7 @@ var userProfile = {
   physicality: "relaxed",
   // This variable is derivative: based on 'physicality'.
   physicalityBehaviour: [""],
+
   raceTime: 0,
   avgHeartRate: 0,
   weight: 0,
@@ -35,6 +36,7 @@ var userProfile = {
   educationLevel: "",
 
   isInGroup: false,
+  groupSize: 0,
   groupDynamics: "",
 }
 
