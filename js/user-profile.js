@@ -41,35 +41,36 @@ var userProfile = {
 function updateUserValues(){
 
   if (userProfile.id == "001" || userProfile.id == "shen"){
-    userProfile.alias = "Shen"; userProfile.continent = "Asia"; userProfile.language = "Chinese"; userProfile.personality = "right-brained"; userProfile.physicality = "relaxed";
-  } else if (userProfile.id == "002" || userProfile.id == "liang"){
-    userProfile.alias = "Liang"; userProfile.continent = "Asia"; userProfile.language = "Chinese"; userProfile.personality = "left-brained"; userProfile.physicality = "relaxed";
-  } else if (userProfile.id == "003" || userProfile.id == "krishnaa"){
-    userProfile.alias = "Krishnaa"; userProfile.continent = "Europe"; userProfile.language = "Dutch"; userProfile.personality = "right-brained"; userProfile.physicality = "active";
-  } else if (userProfile.id == "004" || userProfile.id == "arthur"){
-    userProfile.alias = "Arthur"; userProfile.continent = "Europe"; userProfile.language = "Dutch"; userProfile.personality = "left-brained"; userProfile.physicality = "relaxed";
+    userProfile.alias = "Shen"; userProfile.id = "001"; userProfile.continent = "Asia"; userProfile.language = "Chinese"; userProfile.personality = "right-brained"; userProfile.physicality = "relaxed";
+  } else if (userProfile.id == "002" || userProfile.id == "liang" || userProfile.id == "li"){
+    userProfile.alias = "Liang"; userProfile.id = "002"; userProfile.continent = "Asia"; userProfile.language = "Chinese"; userProfile.personality = "left-brained"; userProfile.physicality = "relaxed";
+  } else if (userProfile.id == "003" || userProfile.id == "krishnaa" || userProfile.id == "kris"){
+    userProfile.alias = "Krishnaa"; userProfile.id = "003"; userProfile.continent = "Europe"; userProfile.language = "Dutch"; userProfile.personality = "right-brained"; userProfile.physicality = "active";
+  } else if (userProfile.id == "004" || userProfile.id == "arthur" || userProfile.id == "art" || userProfile.id == "aj"){
+    userProfile.alias = "Arthur"; userProfile.id = "004"; userProfile.continent = "Europe"; userProfile.language = "Dutch"; userProfile.personality = "left-brained"; userProfile.physicality = "relaxed";
   } else if (userProfile.id == "005" || userProfile.id == "jb"){
-    userProfile.alias = "Jean-Bernard"; userProfile.continent = "Europe"; userProfile.language = "Dutch"; userProfile.personality = "left-brained"; userProfile.physicality = "relaxed";
-  } else if (userProfile.id == "006" || userProfile.id == "javed"){
-    userProfile.alias = "Javed"; userProfile.continent = "Europe"; userProfile.country = "Greece"; userProfile.language = "Greek"; userProfile.personality = "left-brained"; userProfile.physicality = "relaxed";
+    userProfile.alias = "Jean-Bernard"; userProfile.id = "005"; userProfile.continent = "Europe"; userProfile.language = "Dutch"; userProfile.personality = "left-brained"; userProfile.physicality = "relaxed";
+  } else if (userProfile.id == "006" || userProfile.id == "javed" || userProfile.id == "jav"){
+    userProfile.alias = "Javed"; userProfile.id = "006"; userProfile.continent = "Europe"; userProfile.country = "Greece"; userProfile.language = "Greek"; userProfile.personality = "left-brained"; userProfile.physicality = "relaxed";
   } else if (userProfile.id == "007" || userProfile.id == "ward"){
-    userProfile.alias = "Ward"; userProfile.continent = "Europe"; userProfile.language = "Dutch"; userProfile.personality = "right-brained"; userProfile.physicality = "active";
+    userProfile.alias = "Ward"; userProfile.id = "007"; userProfile.continent = "Europe"; userProfile.language = "Dutch"; userProfile.personality = "right-brained"; userProfile.physicality = "active";
   } else if (userProfile.id == "008" || userProfile.id == "daan"){
-    userProfile.alias = "Daan"; userProfile.continent = "Europe"; userProfile.language = "Dutch"; userProfile.personality = "right-brained"; userProfile.physicality = "relaxed";
+    userProfile.alias = "Daan"; userProfile.id = "008"; userProfile.continent = "Europe"; userProfile.language = "Dutch"; userProfile.personality = "right-brained"; userProfile.physicality = "relaxed";
   } else if (userProfile.id == "009" || userProfile.id == "leo"){
-    userProfile.alias = "Leo"; userProfile.continent = "Europe"; userProfile.language = "Italian"; userProfile.personality = "left-brained"; userProfile.physicality = "relaxed";
+    userProfile.alias = "Leo"; userProfile.id = "009"; userProfile.continent = "Europe"; userProfile.language = "Italian"; userProfile.personality = "left-brained"; userProfile.physicality = "relaxed";
   } else if (userProfile.id == "010" || userProfile.id == "tomas"){
-    userProfile.alias = "Tomas"; userProfile.continent = "Europe"; userProfile.language = "Lithuanian"; userProfile.personality = "left-brained"; userProfile.physicality = "relaxed";
+    userProfile.alias = "Tomas"; userProfile.id = "010"; userProfile.continent = "Europe"; userProfile.language = "Lithuanian"; userProfile.personality = "left-brained"; userProfile.physicality = "relaxed";
   } else if (userProfile.id == "011" || userProfile.id == "rick"){
-    userProfile.alias = "Rick"; userProfile.continent = "Europe"; userProfile.language = "Dutch"; userProfile.personality = "right-brained"; userProfile.physicality = "active";
+    userProfile.alias = "Rick"; userProfile.id = "011"; userProfile.continent = "Europe"; userProfile.language = "Dutch"; userProfile.personality = "right-brained"; userProfile.physicality = "active";
   } else if (userProfile.id == "012"){
-    userProfile.alias = "Annabel"; userProfile.continent = "Europe"; userProfile.language = "Dutch"; userProfile.personality = "right-brained"; userProfile.physicality = "active";
+    userProfile.alias = "Annabel"; userProfile.id = "012"; userProfile.continent = "Europe"; userProfile.language = "Dutch"; userProfile.personality = "right-brained"; userProfile.physicality = "active";
   } else if (userProfile.id == "013"){
-    userProfile.alias = "Heleen"; userProfile.continent = "Europe"; userProfile.language = "Dutch"; userProfile.personality = "left-brained"; userProfile.physicality = "relaxed";
+    userProfile.alias = "Heleen"; userProfile.id = "013"; userProfile.continent = "Europe"; userProfile.language = "Dutch"; userProfile.personality = "left-brained"; userProfile.physicality = "relaxed";
   } else if (userProfile.id == "014"){
-    userProfile.alias = "Jelte"; userProfile.continent = "Europe"; userProfile.language = "Dutch"; userProfile.personality = "right-brained"; userProfile.physicality = "relaxed";
+    userProfile.alias = "Jelte"; userProfile.id = "014"; userProfile.continent = "Europe"; userProfile.language = "Dutch"; userProfile.personality = "right-brained"; userProfile.physicality = "relaxed";
   } else {
     // redirect to Shen's profile in case of failure or error.
+
     userProfile.alias = "Shen"; userProfile.continent = "Asia"; userProfile.language = "Chinese"; userProfile.personality = "right-brained"; userProfile.physicality = "relaxed";
   }
 
@@ -98,7 +99,7 @@ function updateUserValues(){
 
   } else if (userProfile.continent == "Europe") {
     userProfile.culturalValues = ["faithful", "modern", "traditional"];
-    userProfile.avatar = "Eurasian Wolf";
+    userProfile.avatar = "Eurasian Fox";
 
     if (userProfile.language == "English") {
       userProfile.country = "Europe";

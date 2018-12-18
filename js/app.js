@@ -128,6 +128,7 @@ function progressDialogue(){
     } else if (dialogIndex == 9){
       summonImage();
     }
+
   } else {
     console.log("$DEBUG That's all, folks!");
   }
@@ -139,7 +140,7 @@ function changeAvatarImg(){
 
   if (userProfile.avatar == "Giant Panda"){
     userAvatarImg.src=`${avatarPrefix}panda.png`;
-  } else if (userProfile.avatar == "Eurasian Wolf"){
+  } else if (userProfile.avatar == "Eurasian Fox"){
     userAvatarImg.src=`${avatarPrefix}wolf.png`;
   }
 }
@@ -182,6 +183,8 @@ function summonVideo(videoStage){
 function summonImage(){
   generatePersonalUrl();
   const imageUrl = `images/data-visualisations/${myUrl}.jpg`;
+
+  
 
   const lbContent = `<img width="1920" height="1080" src="images/data-visualisations/data-visualisation-sample.png">`;
   const lbInstance = basicLightbox.create(lbContent);
