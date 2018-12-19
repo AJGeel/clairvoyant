@@ -180,6 +180,21 @@ body{
   /* animation: animateCursor 2s infinite; */
 }
 
+.qr-code-image{
+  position: absolute;
+  z-index: 1337;
+  /* bottom: 138px;
+  right: 140px;
+  width: 180px; */
+
+  bottom: 184px;
+  right: 185px;
+  width: 140px;
+
+  border-radius: 10px;
+  animation: fadeIn 2s ease-in-out;
+}
+
 #particles-js{
   position: absolute;
   z-index: -1;
@@ -202,6 +217,11 @@ body{
   99%    { opacity: 0; transform: translateX(0)}
   100%   { opacity: 0; transform: translateX(-100vw)}
   /* added in transform as a temporary clipping fix */
+}
+
+@keyframes fadeIn {
+  0%    { opacity: 0; }
+  100%    { opacity: 1; }
 }
 
 @keyframes animateCursor {

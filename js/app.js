@@ -185,10 +185,22 @@ function summonImage(){
   const imageUrl = `images/data-visualisations/${myUrl}.jpg`;
   const altImageUrl = `images/data-visualisations/${userProfile.id}.jpg`;
 
-  const lbContent = `<img width="1920" height="1080" src="images/data-visualisations/data-visualisation-sample.png">`;
+  const lbContent = `<img width="1920" height="1080" src="${altImageUrl}">`;
   const lbInstance = basicLightbox.create(lbContent);
   lbInstance.show();
 
+  // Displays a dynamically selected QR code over the data visualisation so that the visitors can see the visualisation at home.
+  displayQRCode();
+}
+
+function displayQRCode(){
+  var qrCode = new Image();
+  var docBody = document.getElementById('body');
+  qrCode.onload = function(){
+    docBody.appendChild(qrCode);
+  };
+  qrCode.className += "qr-code-image";
+  qrCode.src = `images/qr/${userProfile.id}.png`;
 }
 
 function playTypewriterSound(){
