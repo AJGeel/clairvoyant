@@ -1,10 +1,3 @@
-console.log("$DEBUG The code compiled! Great success 🎉")
-
-// Initialize js particles configuration.
-particlesJS.load('particles-js', 'js/dist/particles.json', function() {
-  console.log('$DEBUG particles.js config loaded');
-});
-
 // Read the URL for parameters. We use this to target user data.
 implementURLParams();
 
@@ -22,7 +15,6 @@ var dialogues = [
   // START CHAPTER 1 —— CULTURE
   `Where should I start? Oh, I know! Let’s take a look at <span class="highlight">which continent</span> you are from . . .</div> `,
   `So you're from <span class="highlight">${userProfile.country}</span> &mdash; correct? ${userProfile.greeting}! you can probably speak ${userProfile.language}, right? My calculations predict that you really value <span class="highlight">${userProfile.culturalValues[0]}</span>, <span class="highlight">${userProfile.culturalValues[1]}</span> and <span class="highlight">${userProfile.culturalValues[2]}</span>.`,
-  // `&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;`,
   `I have updated your avatar to a <span class="highlight">${userProfile.avatar}</span> to represent your continent.`,
 
 
@@ -36,10 +28,6 @@ var dialogues = [
   `That was quite a lot, wasn't it? Was I right in some of my guesses? Here, I'll explain how I knew all the things I just told you.`,
   `&nbsp;`,
 ];
-
-// window.onload = function(){
-//   fireworks.setCanvasSize();
-// }
 
 // Initialize variables, make DOM calls to lower resources required by browser.
 var dialogIndex = 0,
@@ -224,7 +212,7 @@ function implementURLParams(){
     // Change userProfile ID to the query input in URI
     userProfile.id = String(urlParams.id);
   }
-  catch(ohjee){
+  catch(oops){
     // Error shows up when there is no parameter added to the URL
     console.log("$DEBUG No parameters in the URL, no problem. We'll go for a random one instead.");
     var randomInt = getRandomInt(14) + 1;

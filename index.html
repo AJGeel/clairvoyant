@@ -1,65 +1,76 @@
 <!DOCTYPE html>
+<!--
+
+Viewing the page source? Cool! The code is open source. Check it out on GitHub.
+https://github.com/ajgeel/clairvoyant
+
+You can also find more context on the project on this page. We're happy to share the process.
+
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#                                                                                                                                                   #
+#   Licenses & description                                                                                                                          #
+#                                                                                                                                                   #
+#   This web application was developed by Arthur Geel in November—December 2018. In order to do so, a number of libraries have been                 #
+#   integrated. All libraries are included in the "libraries" section at the bottom of the code. All libraries are licenced under                   #
+#   MIT regulations, or similar.                                                                                                                    #
+#                                                                                                                                                   #
+#   The avatar design for 'Ray' was designed by Freepik. Adaptations were made, and other avatars were created to form Ray's form family.           #
+#   Design vector created by Freepik —— https://www.freepik.com/free-photos-vectors/design                                                          #
+#                                                                                                                                                   #
+#   The licence allows for free use of this image:                                                                                                  #
+#   - For both personal and commercial projects and to modify it.                                                                                   #
+#   - In a website or presentation template or application or as part of your design.                                                               #
+#                                                                                                                                                   #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+
+-->
+
 <html lang="en">
 <head>
 
+<!-- Meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
+<meta name="format-detection" content="telephone=no">
+<meta name="description" content="Ray is a digital entity that learns about visitors of Eindhoven Museum exhibitions." />
+<meta name="keywords" content="design, industrial design, eindhoven museum, tue, technische universiteit eindhoven, arthur geel, krishnaa seck, shen yiwen, xueqing liang, tue id" />
 <title>Ray — EM Artifically Intelligent Entity</title>
 
+<!-- CSS and favicon -->
 <link href="css/reset.css" rel="stylesheet" />
 <link href="css/style.css" rel="stylesheet" />
 <link href="css/basicLightbox.min.css" rel="stylesheet" />
 <link rel="icon" type="image/ico" href="images/favicon.png" />
-
-<style>
-
-</style>
-
 </head>
 
 <body id="body">
-
-  <!-- <canvas style="position: absolute; z-index: 1337" class="fireworks"></canvas> -->
   <div id="particles-js"></div>
-
   <div class="dark-overlay"></div>
-
   <div class="container">
-
     <div class="robot-avatar em-glow"><img id="robot-avatar-img" src="images/avatars/still-robot.png"></img></div>
-
     <div class="em-glow" id="user-avatar"><img id="user-avatar-img" src="images/avatars/user-avatar-neutral.png"></img></div>
-
-    <div class="dialogue-window em-glow">
-      <p class="dialogue-text" id="active-text-window"></p>
-    </div>
-
+    <div class="dialogue-window em-glow"><p class="dialogue-text" id="active-text-window"></p></div>
   </div>
 
-  <!-- <img id="em-logo" src="images/logo-em.svg"></img> -->
-  <!-- <img id="tue-x-em-logos" src="images/logo-em-x-tue.png"></img> -->
   <img id="tue-x-em-logos" src="images/logo-tue-x-em.png"></img>
-
-
-
-  <!-- Libraries -->
-  <script src="js/dist/basicLightbox.min.js"></script>    <!-- https://github.com/electerious/basicLightbox    -->
-  <script src="js/dist/anime.min.js"></script>            <!-- http://animejs.com/documentation/               -->
-  <script src="js/dist/typeit.min.js"></script>           <!-- https://typeitjs.com/docs/                      -->
-  <script src="js/dist/particles.min.js"></script>        <!-- https://github.com/VincentGarreau/particles.js/ -->
-  <!-- <script src="js/dist/fireworks.js"></script> -->
-
-  <!-- custom scripts -->
-
-  <script>/* todo: integrate this in other scripts. */ var dialogueWindow = document.getElementById("active-text-window");</script>
-  <script src="js/user-profile.js"></script>
-  <!-- <script src="js/dialogues.js"></script> -->
-  <script src="js/app.js"></script>
-  <!-- <script src="js/animations.js"></script>  Currently not in use -->
+  <!-- <img id="tue-x-em-logos" src="images/logo-em-x-tue.png"></img> --> <!-- 'backup image: order of logo appearance is reversed. -->
 
 
 </body>
 
+
+<!-- Libraries -->
+<script src="js/dist/basicLightbox.min.js"></script>    <!-- DOCS: https://github.com/electerious/basicLightbox    -->
+<script src="js/dist/typeit.min.js"></script>           <!-- DOCS: https://typeitjs.com/docs/                      -->
+<script src="js/dist/particles.min.js"></script>        <!-- DOCS: https://github.com/VincentGarreau/particles.js/ -->
+<!-- <script src="js/dist/anime.min.js"></script> -->   <!-- DOCS: http://animejs.com/documentation/               -->
+
+<!-- Custom scripts -->
+<script src="js/init.js"></script>
+<script src="js/user-profile.js"></script>
+<script src="js/app.js"></script>
 
 </html>
 
@@ -67,8 +78,6 @@
 
     High priority:
     - Typing sounds + correct sound
-    - QR codes + correct data visualisations at the end
-    - Demo day poster text
 
     Low Priority:
     - Segmented typing strings: more organic timing of narration.
@@ -77,7 +86,6 @@
       - Idle animation
     - Optimize animations, guarantee 60fps
     - User feedback
-    - Hide the mouse
     - Add some variation in script
 
 -->
