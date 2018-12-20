@@ -5,6 +5,7 @@ var userProfile = {
   continent: "Asia",
   language: "Chinese",
   country: "",
+  countryOfOrigin: "",
 
   ethnicity: "",
   age: "",
@@ -38,6 +39,8 @@ var userProfile = {
   isInGroup: false,
   groupSize: 0,
   groupDynamics: "",
+
+  meansOfTransport: "",
 }
 
 function updateUserValues(){

@@ -18,6 +18,7 @@ body{
   background: linear-gradient(var(--gray-70), var(--gray-90));
   height: 100vh;
   overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 #em-logo{
